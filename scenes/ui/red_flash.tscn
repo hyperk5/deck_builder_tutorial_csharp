@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://bdtk1hxm5geds"]
+
+[ext_resource type="Script" path="res://scenes/ui/RedFlash.cs" id="1_ola2d"]
+
+[node name="RedFlash" type="CanvasLayer"]
+layer = 2
+script = ExtResource("1_ola2d")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 0.615686, 0.560784, 0)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true

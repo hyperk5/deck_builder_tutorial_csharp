@@ -1,0 +1,37 @@
+[gd_scene load_steps=8 format=3 uid="uid://cgwuiq3y4hfud"]
+
+[ext_resource type="Texture2D" uid="uid://1u3b3hwqd8yh" path="res://art/tile_0110.png" id="1_3omaq"]
+[ext_resource type="Script" path="res://scenes/enemy/Enemy.cs" id="1_cjwb4"]
+[ext_resource type="PackedScene" uid="uid://duapg8qn703wd" path="res://scenes/ui/stats_ui.tscn" id="2_7wlc1"]
+[ext_resource type="Texture2D" uid="uid://bb3rcs5nqntir" path="res://art/arrow.png" id="2_f6rbo"]
+[ext_resource type="PackedScene" uid="uid://cevyg45jt5i0i" path="res://scenes/ui/intent_ui.tscn" id="5_d4moq"]
+[ext_resource type="Theme" uid="uid://wy6ayipncftw" path="res://main_theme.tres" id="6_c81mf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q3xq5"]
+
+[node name="Enemy" type="Area2D" groups=["enemies"]]
+collision_layer = 4
+script = ExtResource("1_cjwb4")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_3omaq")
+
+[node name="Arrow" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(15, 0)
+rotation = 4.71239
+texture = ExtResource("2_f6rbo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_q3xq5")
+
+[node name="StatsUI" parent="." instance=ExtResource("2_7wlc1")]
+offset_top = 8.0
+offset_bottom = 24.0
+
+[node name="IntentUI" parent="." instance=ExtResource("5_d4moq")]
+visible = false
+offset_top = -28.0
+offset_bottom = -14.0
+theme = ExtResource("6_c81mf")

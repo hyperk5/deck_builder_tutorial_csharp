@@ -1,0 +1,65 @@
+[gd_scene load_steps=7 format=3 uid="uid://beb4mvs44uudh"]
+
+[ext_resource type="Theme" uid="uid://wy6ayipncftw" path="res://main_theme.tres" id="1_7mrf5"]
+[ext_resource type="Script" path="res://scenes/card/CardUI.cs" id="2_my3x3"]
+[ext_resource type="Texture2D" uid="uid://bfvi02kojsa00" path="res://art/tile_0103.png" id="3_k0icw"]
+[ext_resource type="StyleBox" uid="uid://b4elaokw5tw6" path="res://scenes/card/card_base_stylebox.tres" id="3_p2k8p"]
+[ext_resource type="PackedScene" uid="uid://0o8qi6gy7jxg" path="res://scenes/card/card_target_selector/card_target_selector.tscn" id="3_p3vdl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2qx88"]
+size = Vector2(25, 30)
+
+[node name="CardUI" type="Control"]
+custom_minimum_size = Vector2(25, 30)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 25.0
+offset_bottom = 30.0
+theme = ExtResource("1_7mrf5")
+script = ExtResource("2_my3x3")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("3_p2k8p")
+
+[node name="Cost" type="Label" parent="."]
+layout_mode = 0
+offset_right = 10.0
+offset_bottom = 10.0
+text = "2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Icon" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.0
+offset_top = -5.0
+offset_right = 5.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_k0icw")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="DropPointDetector" type="Area2D" parent="."]
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DropPointDetector"]
+position = Vector2(12.5, 15)
+shape = SubResource("RectangleShape2D_2qx88")
+
+[node name="CardTargetSelector" parent="." instance=ExtResource("3_p3vdl")]
+position = Vector2(12.5, 2.08165e-12)

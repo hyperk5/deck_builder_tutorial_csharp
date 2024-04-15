@@ -1,0 +1,16 @@
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://3j8eorsuxbq6"]
+
+[ext_resource type="Texture2D" uid="uid://cqcal03735mv8" path="res://art/tile_0118.png" id="1_l4iu8"]
+[ext_resource type="Script" path="res://characters/warrior/cards/WarriorSlash.cs" id="1_qv4gh"]
+[ext_resource type="AudioStream" uid="uid://dixklg6g4jnsq" path="res://art/slash.ogg" id="2_gobd7"]
+
+[resource]
+script = ExtResource("1_qv4gh")
+ID = "warrior_slash"
+Type = 0
+Target = 2
+Cost = 2
+Sound = ExtResource("2_gobd7")
+Icon = ExtResource("1_l4iu8")
+TooltipText = "[center]Deal [color=\"ff0000\"]4[/color] damage
+to all enemies.[/center]"

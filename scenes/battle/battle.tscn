@@ -1,0 +1,106 @@
+[gd_scene load_steps=17 format=3 uid="uid://dr233b8vb3kkn"]
+
+[ext_resource type="Script" path="res://scenes/battle/Battle.cs" id="1_gdxb3"]
+[ext_resource type="Resource" uid="uid://b7l4qy3jr5kon" path="res://characters/warrior/warrior.tres" id="2_ckge4"]
+[ext_resource type="Texture2D" uid="uid://cp4iq5fd6j8be" path="res://art/background.png" id="3_10s5e"]
+[ext_resource type="PackedScene" uid="uid://b1fh0j5l6jbvx" path="res://scenes/player/player.tscn" id="4_cjngo"]
+[ext_resource type="Script" path="res://scenes/enemy/EnemyHandler.cs" id="5_oux4e"]
+[ext_resource type="PackedScene" uid="uid://cgwuiq3y4hfud" path="res://scenes/enemy/enemy.tscn" id="6_1vvu1"]
+[ext_resource type="Resource" uid="uid://cahtsowoh1w2t" path="res://enemies/crab/crab_enemy.tres" id="7_2338a"]
+[ext_resource type="Script" path="res://scenes/player/PlayerHandler.cs" id="8_4hoxb"]
+[ext_resource type="Resource" uid="uid://cv34xv0j0r0nu" path="res://enemies/bat/bat_enemy.tres" id="8_t7dc2"]
+[ext_resource type="PackedScene" uid="uid://xl051s0b51t4" path="res://scenes/ui/mana_ui.tscn" id="9_li316"]
+[ext_resource type="Script" path="res://scenes/ui/Hand.cs" id="10_sxsn5"]
+[ext_resource type="PackedScene" uid="uid://cfud02xm0ky47" path="res://scenes/ui/tool_tip.tscn" id="11_2ww8k"]
+[ext_resource type="Theme" uid="uid://wy6ayipncftw" path="res://main_theme.tres" id="12_okkyu"]
+[ext_resource type="PackedScene" uid="uid://bdtk1hxm5geds" path="res://scenes/ui/red_flash.tscn" id="13_lpglb"]
+[ext_resource type="PackedScene" uid="uid://4s7kqvy0sura" path="res://scenes/ui/battle_over_panel.tscn" id="14_0xvmt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_03alc"]
+size = Vector2(256, 100)
+
+[node name="Battle" type="Node2D"]
+script = ExtResource("1_gdxb3")
+CharacterStats = ExtResource("2_ckge4")
+metadata/_edit_lock_ = true
+
+[node name="Backgound" type="Sprite2D" parent="."]
+modulate = Color(0.396078, 0.396078, 0.396078, 1)
+texture = ExtResource("3_10s5e")
+centered = false
+
+[node name="CardDropArea" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CardDropArea"]
+position = Vector2(128, 50)
+shape = SubResource("RectangleShape2D_03alc")
+debug_color = Color(0, 0.72549, 0.843137, 0.101961)
+
+[node name="Player" parent="." instance=ExtResource("4_cjngo")]
+position = Vector2(45, 79)
+
+[node name="EnemyHandler" type="Node" parent="."]
+script = ExtResource("5_oux4e")
+
+[node name="Enemy" parent="EnemyHandler" instance=ExtResource("6_1vvu1")]
+position = Vector2(204, 77)
+Stats = ExtResource("7_2338a")
+
+[node name="Enemy2" parent="EnemyHandler" instance=ExtResource("6_1vvu1")]
+position = Vector2(175, 51)
+Stats = ExtResource("8_t7dc2")
+
+[node name="Enemy3" parent="EnemyHandler" instance=ExtResource("6_1vvu1")]
+position = Vector2(230, 48)
+Stats = ExtResource("8_t7dc2")
+
+[node name="PlayerHandler" type="Node" parent="."]
+script = ExtResource("8_4hoxb")
+
+[node name="BattleUI" type="CanvasLayer" parent="." groups=["ui_layer"]]
+
+[node name="ManaUI" parent="BattleUI" instance=ExtResource("9_li316")]
+unique_name_in_owner = true
+
+[node name="Hand" type="HBoxContainer" parent="BattleUI"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -75.0
+offset_top = -30.0
+offset_right = 75.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+script = ExtResource("10_sxsn5")
+
+[node name="ToolTip" parent="BattleUI" instance=ExtResource("11_2ww8k")]
+offset_top = 5.0
+offset_bottom = 41.0
+
+[node name="EndTurnButton" type="Button" parent="BattleUI"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -51.0
+offset_top = -20.0
+offset_right = -6.0
+offset_bottom = -6.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("12_okkyu")
+text = "End Turn"
+
+[node name="RedFlash" parent="." instance=ExtResource("13_lpglb")]
+
+[node name="BattleOverLayer" type="CanvasLayer" parent="."]
+
+[node name="BattleOverPanel" parent="BattleOverLayer" instance=ExtResource("14_0xvmt")]
+visible = false

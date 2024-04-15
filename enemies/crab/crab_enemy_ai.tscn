@@ -1,0 +1,49 @@
+[gd_scene load_steps=14 format=3 uid="uid://c5wuuymly1iy2"]
+
+[ext_resource type="Script" path="res://scenes/enemy/EnemyActionPicker.cs" id="1_t4l0m"]
+[ext_resource type="Script" path="res://enemies/crab/CrabAttackAction.cs" id="2_5n6j0"]
+[ext_resource type="Script" path="res://enemies/crab/CrabBlockAction.cs" id="3_fcttb"]
+[ext_resource type="Texture2D" uid="uid://bfvi02kojsa00" path="res://art/tile_0103.png" id="3_p1n5c"]
+[ext_resource type="Script" path="res://enemies/crab/CrabMegaBlockAction.cs" id="4_04dw6"]
+[ext_resource type="Script" path="res://custom_resources/Intent.cs" id="4_32sk7"]
+[ext_resource type="AudioStream" uid="uid://de2ryat1pxq6" path="res://art/enemy_attack.ogg" id="5_nu0x7"]
+[ext_resource type="Texture2D" uid="uid://bi6pfjs32f820" path="res://art/tile_0101.png" id="6_ykc5u"]
+[ext_resource type="AudioStream" uid="uid://k8m4o3hlwm7l" path="res://art/enemy_block.ogg" id="8_n6jcr"]
+[ext_resource type="Texture2D" uid="uid://oe7v35ii8vrs" path="res://art/tile_0102.png" id="8_qthdq"]
+
+[sub_resource type="Resource" id="Resource_xgwe4"]
+script = ExtResource("4_32sk7")
+Number = "7"
+Icon = ExtResource("3_p1n5c")
+
+[sub_resource type="Resource" id="Resource_5jpyw"]
+script = ExtResource("4_32sk7")
+Number = "6"
+Icon = ExtResource("6_ykc5u")
+
+[sub_resource type="Resource" id="Resource_x2da4"]
+script = ExtResource("4_32sk7")
+Number = "15"
+Icon = ExtResource("8_qthdq")
+
+[node name="CrabEnemyAI" type="Node"]
+script = ExtResource("1_t4l0m")
+
+[node name="AttackAction" type="Node" parent="."]
+script = ExtResource("2_5n6j0")
+ActionType = 1
+ChanceWeight = 1.0
+Intent = SubResource("Resource_xgwe4")
+Sound = ExtResource("5_nu0x7")
+
+[node name="BlockAction" type="Node" parent="."]
+script = ExtResource("3_fcttb")
+ActionType = 1
+ChanceWeight = 1.0
+Intent = SubResource("Resource_5jpyw")
+Sound = ExtResource("8_n6jcr")
+
+[node name="MegaBlockAction" type="Node" parent="."]
+script = ExtResource("4_04dw6")
+Intent = SubResource("Resource_x2da4")
+Sound = ExtResource("8_n6jcr")
