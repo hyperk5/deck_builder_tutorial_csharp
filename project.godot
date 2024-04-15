@@ -12,8 +12,16 @@ config_version=5
 
 config/name="deck_builder_tutorial_csharp"
 run/main_scene="res://src/Main.tscn"
-config/features=PackedStringArray("4.1", "C#", "Mobile")
+config/features=PackedStringArray("4.2", "C#", "Mobile")
 config/icon="res://icon.png"
+
+[display]
+
+window/size/viewport_width=256
+window/size/viewport_height=144
+window/size/window_width_override=1280
+window/size/window_height_override=720
+window/stretch/mode="viewport"
 
 [dotnet]
 
